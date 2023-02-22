@@ -1,5 +1,5 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: GitHub Actions CI
+run-name: ${{ github.actor }} is run GitHub Actions 🚀
 on: [push]
 defaults:
   run:
@@ -14,11 +14,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GIT_TOKEN }}
-      - run: |
+      - name: Install dependence
+        run: |
           sudo apt install -y qemu-user-static binfmt-support
-      - name: Checkout
+      - name: Download code
         uses: actions/checkout@v3
-      - run: |
+      - name: Build and code test
+        run: |
              docker pull ghcr.io/berserkerrider/build_image:v1
              docker run -i -v /home/runner/work/buoyancy/buoyancy:/home/ros2/src ghcr.io/berserkerrider/build_image:v1 bash -c \
              "cd /home/ros2 && source /opt/ros2/galactic/setup.bash
