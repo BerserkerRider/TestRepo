@@ -24,4 +24,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - run: |
-             pwd && ll
+             cd /home/ros2 && \
+             colcon build --packages-select demo_nodes_cpp
