@@ -22,6 +22,9 @@ jobs:
         - /home/runner/work/TestReo:/home/ros2/src/TestReo
     steps:
       - run: |
-             cd /home/ros2
+             cd /home/ros2/src
+      - name: Checkout
+        uses: actions/checkout@v3
       - run: |
+             cd /home/ros2
              colcon build --packages-select demo_nodes_cpp
