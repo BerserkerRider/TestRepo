@@ -7,7 +7,7 @@ defaults:
 jobs:
   container-job:
     # Containers must run in Linux based operating systems
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     # Docker Hub image that `container-job` executes in
     container:
       image: ghcr.io/berserkerrider/ubuntu20-ros2:v1.1
@@ -24,8 +24,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - run: |
-             cd /home/ros2 && \
-             cd /opt && \
-             echo ${{env.PATH}}
+             ls -A
+             #cd /home/ros2 && \
+             #cd /opt && \
              #source /opt/ros2/galactic/setup.bash && \ 
              #colcon build --packages-up-to demo_nodes_cpp
