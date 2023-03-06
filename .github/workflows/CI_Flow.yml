@@ -19,9 +19,9 @@ jobs:
       ports:
         - 80
       volumes:
-        - /home/runner/work/TestReo:/home/TestReo
+        - /home/runner/work/TestReo:/home/ros2/src/TestReo
     steps:
       - run: |
-             pwd
+             cd /home/ros2
       - run: |
-             ls
+             colcon build --packages-select demo_nodes_cpp
