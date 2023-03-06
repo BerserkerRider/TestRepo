@@ -19,7 +19,7 @@ jobs:
       ports:
         - 80
       volumes:
-        - $GITHUB_WORKSPACE:/home/ros2/src/TestReo
+        - ${{GITHUB_WORKSPACE}}:/home/ros2/src/
     steps:
       - run: |
              echo $GITHUB_WORKSPACE && \
