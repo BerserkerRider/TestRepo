@@ -25,7 +25,6 @@ jobs:
         uses: actions/checkout@v3
       - run: |
              ls -A
-             #cd /home/ros2 && \
-             #cd /opt && \
-             #source /opt/ros2/galactic/setup.bash && \ 
-             #colcon build --packages-up-to demo_nodes_cpp
+             cd /home/ros2 && \
+             source /opt/ros/galactic/setup.bash && \ 
+             colcon build --packages-up-to demo_nodes_cpp
