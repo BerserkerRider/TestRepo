@@ -18,16 +18,10 @@ jobs:
      #  NODE_ENV: development
       ports:
         - 80
-      volumes:
-        - ${{GITHUB_WORKSPACE}}:/home/ros2/src/
+      #volumes:
+      #  - ${{GITHUB_WORKSPACE}}:/home/ros2/src/
     steps:
-      - run: |
-             echo $GITHUB_WORKSPACE && \
-             cd /home/ros2/src
       - name: Checkout
         uses: actions/checkout@v3
-        with: 
-              path: '/home/ros2/src'
       - run: |
-             cd /home/ros2 && \
              colcon build --packages-select demo_nodes_cpp
