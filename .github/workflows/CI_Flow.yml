@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
     container:
-      image: ghcr.io/berserkerrider/ubuntu20-ros2:v1
+      image: ghcr.io/berserkerrider/ubuntu20-ros2:v1.1
       credentials:
          username: ${{ secrets.GIT_USER }}
          password: ${{ secrets.GIT_TOKEN }}
@@ -25,5 +25,4 @@ jobs:
         uses: actions/checkout@v3
       - run: |
              cd /home/ros2 && \
-             source /opt/ros2/galactic/setup.bash && \
              colcon build --packages-up-to demo_nodes_cpp
