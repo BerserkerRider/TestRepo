@@ -18,8 +18,8 @@ jobs:
      #  NODE_ENV: development
       ports:
         - 80
-      #volumes:
-      #  - ${{GITHUB_WORKSPACE}}:/home/ros2/src/
+      volumes:
+        - ${{github.workspace}}:/home/ros2/src/
     steps:
       - name: Checkout
         uses: actions/checkout@v3
