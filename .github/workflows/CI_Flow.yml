@@ -1,7 +1,9 @@
 on:
   pull_request:
   push:
-      
+defaults:
+  run:
+    shell: bash    
 jobs:
   container-job:
     # Containers must run in Linux based operating systems
@@ -19,5 +21,7 @@ jobs:
       volumes:
         - /home/runner/work/TestReo:/home/TestReo
     steps:
+      - run: |
+             pwd
       - run: |
              ls
