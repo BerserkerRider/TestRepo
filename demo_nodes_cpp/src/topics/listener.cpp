@@ -33,6 +33,7 @@ public:
     // Create a callback function for when messages are received.
     // Variations of this function also exist using, for example UniquePtr for zero-copy transport.
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
+    whatis new;
     auto callback =
       [this](const std_msgs::msg::String::SharedPtr msg) -> void
       {
