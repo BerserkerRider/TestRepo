@@ -1,27 +1,29 @@
 on:
   pull_request:
   push:
-      
+defaults:
+  run:
+    shell: bash    
 jobs:
-  build-and-test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-20.04]
-      fail-fast: false
+  container-job:
+    # Containers must run in Linux based operating systems
+    runs-on: ubuntu-20.04
+    # Docker Hub image that `container-job` executes in
+    container:
+      image: ghcr.io/berserkerrider/ubuntu20-ros2:v1
+      credentials:
+         username: ${{ secrets.GIT_USER }}
+         password: ${{ secrets.GIT_TOKEN }}
+     # env:
+     #  NODE_ENV: development
+      ports:
+        - 80
+      volumes:
+        - ${{github.workspace}}:/home/ros2/src/
     steps:
-      - name: Setup ROS 2
-        uses: ros-tooling/setup-ros@v0.2
-        with:
-          required-ros-distributions: galactic
-      - name: build and test
-        uses: ros-tooling/action-ros-ci@v0.2
-        with:
-          target-ros2-distro: galactic
-      - name: Codecov
-        uses: codecov/codecov-action@v1.2.1
-        with:
-          file: ros_ws/lcov/total_coverage.info
-          flags: unittests
-          name: codecov-umbrella
-          fail_ci_if_error: false
+      - name: Checkout
+        uses: actions/checkout@v3
+      - run: |
+             cd /home/ros2
+             source /opt/ros/galactic/setup.bash
+             colcon build --packages-up-to demo_nodes_cpp
